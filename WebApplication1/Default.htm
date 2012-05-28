@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script type="text/javascript" src="/Scripts/jquery-1.7.2.js"></script>
+    <script type="text/javascript" src="/Scripts/knockout-2.1.0.debug.js"></script>
+    <script type="text/javascript" src="/Scripts/App/Model.js"></script>
+</head>
+    <body>
+        <div>
+            Current position:
+            <span data-bind="text:currentPosition"></span>
+        </div>
+        <div>
+            Number of slides:
+            <span data-bind="text:slides().length"></span>
+        </div>
+        
+        <div data-bind="text:currentSlide().content"></div>
+        <input data-bind="value:newContent"/>
+        <button data-bind="click:add">add</button>
+    
+        <button data-bind="click:previous">&lt;</button>
+        <button data-bind="click:next">&gt;</button>
+    
+        <!-- ko foreach : slides -->
+        <a data-bind="text:$index, click: $parent.go.bind($parent,$index)"></a>
+        <!-- /ko -->
+        <button data-bind="visible:slides().length>1, click:remove">remove</button>
+
+    </body>
+</html>
